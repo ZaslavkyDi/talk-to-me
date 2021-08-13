@@ -2,9 +2,8 @@ import datetime
 import re
 
 import ulid
-from sqlalchemy import MetaData, TIMESTAMP, Column, String
+from sqlalchemy import TIMESTAMP, Column, MetaData, String
 from sqlalchemy.orm import declarative_base, declared_attr
-
 from stringcase import snakecase
 
 meta = MetaData(
@@ -46,7 +45,7 @@ class BaseOrmModel(TimeStamped, Base):
 
     @declared_attr
     def __tablename__(
-        cls
+        cls,
     ) -> str:  # cannot use @classmethod here otherwise Alembic explodes
         """
         Provide automated table name
